@@ -1,5 +1,5 @@
 
-# 📚 Book Platform - SEO Optimized Web App
+# 📚 A complete website with Admin Dashboard
 
 ## 🧾 Overview of the Project
 
