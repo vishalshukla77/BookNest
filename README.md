@@ -1,7 +1,7 @@
 
 # 📚 A complete website with Admin Dashboard
 
-## 🧾 Overview of the Project
+## 🧾Overview of the Project
 
 This project is a full-featured book platform built using modern web technologies. It includes a user-facing homepage, book detail pages, and an admin dashboard to manage book data. The platform aims to be SEO-optimized and scalable for both content visibility and performance.
 
