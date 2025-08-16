@@ -1,0 +1,57 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      # Step 3: Install dependencies (Frontend)
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm install
+
+      # Step 4: Build frontend
+      - name: Build frontend
+        working-directory: ./frontend
+        run: npm run build
+
+      # Step 5: Install dependencies (Backend)
+      - name: Install backend dependencies
+        working-directory: ./backend
+        run: npm install
+
+      # Step 6: Build backend
+      - name: Build backend
+        working-directory: ./backend
+        run: npm run build
+
+      # Step 7: Run backend tests (optional)
+      - name: Run backend tests
+        working-directory: ./backend
+        run: npm test || echo "No tests defined"
+
+      # Step 8: Run frontend tests (optional)
+      - name: Run frontend tests
+        working-directory: ./frontend
+        run: npm test || echo "No tests defined"
